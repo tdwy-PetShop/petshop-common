@@ -9,6 +9,8 @@ public class Product {
 
     private Double price;
 
+    private Double disprice;
+
     private Integer stock;
 
     private String image;
@@ -45,6 +47,14 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Double getDisprice() {
+        return disprice;
+    }
+
+    public void setDisprice(Double disprice) {
+        this.disprice = disprice;
     }
 
     public Integer getStock() {

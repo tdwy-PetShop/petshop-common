@@ -295,6 +295,66 @@ public class ProductExample {
             return (Criteria) this;
         }
 
+        public Criteria andDispriceIsNull() {
+            addCriterion("disprice is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDispriceIsNotNull() {
+            addCriterion("disprice is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDispriceEqualTo(Double value) {
+            addCriterion("disprice =", value, "disprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andDispriceNotEqualTo(Double value) {
+            addCriterion("disprice <>", value, "disprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andDispriceGreaterThan(Double value) {
+            addCriterion("disprice >", value, "disprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andDispriceGreaterThanOrEqualTo(Double value) {
+            addCriterion("disprice >=", value, "disprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andDispriceLessThan(Double value) {
+            addCriterion("disprice <", value, "disprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andDispriceLessThanOrEqualTo(Double value) {
+            addCriterion("disprice <=", value, "disprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andDispriceIn(List<Double> values) {
+            addCriterion("disprice in", values, "disprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andDispriceNotIn(List<Double> values) {
+            addCriterion("disprice not in", values, "disprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andDispriceBetween(Double value1, Double value2) {
+            addCriterion("disprice between", value1, value2, "disprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andDispriceNotBetween(Double value1, Double value2) {
+            addCriterion("disprice not between", value1, value2, "disprice");
+            return (Criteria) this;
+        }
+
         public Criteria andStockIsNull() {
             addCriterion("stock is null");
             return (Criteria) this;

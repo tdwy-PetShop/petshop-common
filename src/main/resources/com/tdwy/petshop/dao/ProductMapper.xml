@@ -5,6 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="disprice" jdbcType="DOUBLE" property="disprice" />
     <result column="stock" jdbcType="INTEGER" property="stock" />
     <result column="image" jdbcType="VARCHAR" property="image" />
     <result column="pdesc" jdbcType="VARCHAR" property="pdesc" />
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, price, stock, image, pdesc, hot, createtime, cid, state
+    id, name, price, disprice, stock, image, pdesc, hot, createtime, cid, state
   </sql>
   <select id="selectByExample" parameterType="com.tdwy.petshop.bean.ProductExample" resultMap="BaseResultMap">
     select
@@ -108,14 +109,14 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into product (name, price, stock, 
-      image, pdesc, hot, 
-      createtime, cid, state
-      )
-    values (#{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{stock,jdbcType=INTEGER}, 
-      #{image,jdbcType=VARCHAR}, #{pdesc,jdbcType=VARCHAR}, #{hot,jdbcType=INTEGER}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{cid,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}
-      )
+    insert into product (name, price, disprice, 
+      stock, image, pdesc, 
+      hot, createtime, cid, 
+      state)
+    values (#{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{disprice,jdbcType=DOUBLE}, 
+      #{stock,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{pdesc,jdbcType=VARCHAR}, 
+      #{hot,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{cid,jdbcType=INTEGER}, 
+      #{state,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tdwy.petshop.bean.Product">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -128,6 +129,9 @@
       </if>
       <if test="price != null">
         price,
+      </if>
+      <if test="disprice != null">
+        disprice,
       </if>
       <if test="stock != null">
         stock,
@@ -157,6 +161,9 @@
       </if>
       <if test="price != null">
         #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="disprice != null">
+        #{disprice,jdbcType=DOUBLE},
       </if>
       <if test="stock != null">
         #{stock,jdbcType=INTEGER},
@@ -199,6 +206,9 @@
       <if test="record.price != null">
         price = #{record.price,jdbcType=DOUBLE},
       </if>
+      <if test="record.disprice != null">
+        disprice = #{record.disprice,jdbcType=DOUBLE},
+      </if>
       <if test="record.stock != null">
         stock = #{record.stock,jdbcType=INTEGER},
       </if>
@@ -230,6 +240,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DOUBLE},
+      disprice = #{record.disprice,jdbcType=DOUBLE},
       stock = #{record.stock,jdbcType=INTEGER},
       image = #{record.image,jdbcType=VARCHAR},
       pdesc = #{record.pdesc,jdbcType=VARCHAR},
@@ -249,6 +260,9 @@
       </if>
       <if test="price != null">
         price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="disprice != null">
+        disprice = #{disprice,jdbcType=DOUBLE},
       </if>
       <if test="stock != null">
         stock = #{stock,jdbcType=INTEGER},
@@ -278,6 +292,7 @@
     update product
     set name = #{name,jdbcType=VARCHAR},
       price = #{price,jdbcType=DOUBLE},
+      disprice = #{disprice,jdbcType=DOUBLE},
       stock = #{stock,jdbcType=INTEGER},
       image = #{image,jdbcType=VARCHAR},
       pdesc = #{pdesc,jdbcType=VARCHAR},
