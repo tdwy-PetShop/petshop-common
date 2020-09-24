@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.tdwy.petshop.bean.ProComm">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, pid, content, createtime
+    id, pid, uid, content, createtime
   </sql>
   <select id="selectByExample" parameterType="com.tdwy.petshop.bean.ProCommExample" resultMap="BaseResultMap">
     select
@@ -102,10 +103,10 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into pro_comm (pid, content, createtime
-      )
-    values (#{pid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
-      )
+    insert into pro_comm (pid, uid, content, 
+      createtime)
+    values (#{pid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.tdwy.petshop.bean.ProComm">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -115,6 +116,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="pid != null">
         pid,
+      </if>
+      <if test="uid != null">
+        uid,
       </if>
       <if test="content != null">
         content,
@@ -126,6 +130,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="pid != null">
         #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
       </if>
       <if test="content != null">
         #{content,jdbcType=VARCHAR},
@@ -150,6 +157,9 @@
       <if test="record.pid != null">
         pid = #{record.pid,jdbcType=INTEGER},
       </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
       <if test="record.content != null">
         content = #{record.content,jdbcType=VARCHAR},
       </if>
@@ -165,6 +175,7 @@
     update pro_comm
     set id = #{record.id,jdbcType=INTEGER},
       pid = #{record.pid,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
       content = #{record.content,jdbcType=VARCHAR},
       createtime = #{record.createtime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -176,6 +187,9 @@
     <set>
       <if test="pid != null">
         pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
       </if>
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
@@ -189,6 +203,7 @@
   <update id="updateByPrimaryKey" parameterType="com.tdwy.petshop.bean.ProComm">
     update pro_comm
     set pid = #{pid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},
       createtime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}

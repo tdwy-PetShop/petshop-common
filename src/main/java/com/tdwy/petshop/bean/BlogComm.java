@@ -7,6 +7,8 @@ public class BlogComm {
 
     private Integer bid;
 
+    private Integer uid;
+
     private String content;
 
     private Date createtime;
@@ -25,6 +27,14 @@ public class BlogComm {
 
     public void setBid(Integer bid) {
         this.bid = bid;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     public String getContent() {

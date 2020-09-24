@@ -15,6 +15,8 @@ public class Orders {
 
     private Integer aid;
 
+    private Integer orderid;
+
     public Integer getId() {
         return id;
     }
@@ -61,5 +63,13 @@ public class Orders {
 
     public void setAid(Integer aid) {
         this.aid = aid;
+    }
+
+    public Integer getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(Integer orderid) {
+        this.orderid = orderid;
     }
 }
