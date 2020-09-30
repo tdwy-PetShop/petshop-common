@@ -6,7 +6,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
-public class User {
+public class User implements java.io.Serializable{
+    private static final long serialVersionUID = 1L;
     private Integer id;
 
     @NotEmpty(message = "用户名不能为空")

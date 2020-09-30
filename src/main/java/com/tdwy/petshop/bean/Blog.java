@@ -2,7 +2,8 @@ package com.tdwy.petshop.bean;
 
 import java.util.Date;
 
-public class Blog {
+public class Blog implements java.io.Serializable{
+    private static final long serialVersionUID = 1L;
     private Integer id;
 
     private Integer uid;
@@ -12,6 +13,16 @@ public class Blog {
     private Date createtime;
 
     private String content;
+
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getId() {
         return id;

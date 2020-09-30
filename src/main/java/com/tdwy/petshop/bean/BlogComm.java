@@ -2,7 +2,8 @@ package com.tdwy.petshop.bean;
 
 import java.util.Date;
 
-public class BlogComm {
+public class BlogComm implements java.io.Serializable{
+    private static final long serialVersionUID = 1L;
     private Integer id;
 
     private Integer bid;

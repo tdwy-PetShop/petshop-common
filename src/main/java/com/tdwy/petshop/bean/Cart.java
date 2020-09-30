@@ -1,13 +1,23 @@
 package com.tdwy.petshop.bean;
 
-public class Cart {
+public class Cart implements java.io.Serializable{
+    private static final long serialVersionUID = 1L;
     private Integer id;
 
-    private String uid;
+    private Integer uid;
 
-    private String pid;
+    private Integer pid;
 
-    private String count;
+    private Integer count;
+    private Product product;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     public Integer getId() {
         return id;
@@ -17,27 +27,27 @@ public class Cart {
         this.id = id;
     }
 
-    public String getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid == null ? null : uid.trim();
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
-    public String getPid() {
+    public Integer getPid() {
         return pid;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid == null ? null : pid.trim();
+    public void setPid(Integer pid) {
+        this.pid = pid;
     }
 
-    public String getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(String count) {
-        this.count = count == null ? null : count.trim();
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }
