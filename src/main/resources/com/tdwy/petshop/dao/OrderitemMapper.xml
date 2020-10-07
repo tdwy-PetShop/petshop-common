@@ -7,6 +7,7 @@
     <result column="total" jdbcType="DOUBLE" property="total" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
     <result column="oid" jdbcType="INTEGER" property="oid" />
+    <association property="product" column="pid" select="com.tdwy.petshop.dao.ProductMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -88,6 +89,12 @@
     <include refid="Base_Column_List" />
     from orderitem
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByOid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from orderitem
+    where oid = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from orderitem

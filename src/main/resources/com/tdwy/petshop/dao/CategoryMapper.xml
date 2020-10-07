@@ -4,6 +4,8 @@
   <resultMap id="BaseResultMap" type="com.tdwy.petshop.bean.Category">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="cname" jdbcType="VARCHAR" property="cname" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <association property="products" column="id" select="com.tdwy.petshop.dao.ProductMapper.selectByCid"></association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, cname
+    id, cname, pid
   </sql>
   <select id="selectByExample" parameterType="com.tdwy.petshop.bean.CategoryExample" resultMap="BaseResultMap">
     select
@@ -86,6 +88,12 @@
     from category
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByPid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from category
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from category
     where id = #{id,jdbcType=INTEGER}
@@ -100,8 +108,8 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into category (cname)
-    values (#{cname,jdbcType=VARCHAR})
+    insert into category (cname, pid)
+    values (#{cname,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tdwy.petshop.bean.Category">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -112,10 +120,16 @@
       <if test="cname != null">
         cname,
       </if>
+      <if test="pid != null">
+        pid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="cname != null">
         #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -134,6 +148,9 @@
       <if test="record.cname != null">
         cname = #{record.cname,jdbcType=VARCHAR},
       </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -142,7 +159,8 @@
   <update id="updateByExample" parameterType="map">
     update category
     set id = #{record.id,jdbcType=INTEGER},
-      cname = #{record.cname,jdbcType=VARCHAR}
+      cname = #{record.cname,jdbcType=VARCHAR},
+      pid = #{record.pid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -153,12 +171,16 @@
       <if test="cname != null">
         cname = #{cname,jdbcType=VARCHAR},
       </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.tdwy.petshop.bean.Category">
     update category
-    set cname = #{cname,jdbcType=VARCHAR}
+    set cname = #{cname,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

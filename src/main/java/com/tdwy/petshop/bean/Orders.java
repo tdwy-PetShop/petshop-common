@@ -1,6 +1,7 @@
 package com.tdwy.petshop.bean;
 
 import java.util.Date;
+import java.util.List;
 
 public class Orders implements java.io.Serializable{
     private static final long serialVersionUID = 1L;
@@ -16,7 +17,17 @@ public class Orders implements java.io.Serializable{
 
     private Integer aid;
 
-    private Integer orderid;
+    private String orderid;
+
+    private List<Orderitem> orderitems;
+
+    public List<Orderitem> getOrderitems() {
+        return orderitems;
+    }
+
+    public void setOrderitems(List<Orderitem> orderitems) {
+        this.orderitems = orderitems;
+    }
 
     public Integer getId() {
         return id;
@@ -66,11 +77,11 @@ public class Orders implements java.io.Serializable{
         this.aid = aid;
     }
 
-    public Integer getOrderid() {
+    public String getOrderid() {
         return orderid;
     }
 
-    public void setOrderid(Integer orderid) {
+    public void setOrderid(String orderid) {
         this.orderid = orderid;
     }
 }

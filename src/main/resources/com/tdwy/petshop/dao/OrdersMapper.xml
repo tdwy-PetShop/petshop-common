@@ -9,6 +9,7 @@
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="aid" jdbcType="INTEGER" property="aid" />
     <result column="orderid" jdbcType="INTEGER" property="orderid" />
+    <association property="orderitems" column="id" select="com.tdwy.petshop.dao.OrderitemMapper.selectByOid"></association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

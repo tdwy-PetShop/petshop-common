@@ -4,6 +4,8 @@ import com.tdwy.petshop.bean.Orders;
 import com.tdwy.petshop.bean.OrdersExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 public interface OrdersMapper {
     long countByExample(OrdersExample example);
@@ -27,4 +29,7 @@ public interface OrdersMapper {
     int updateByPrimaryKeySelective(Orders record);
 
     int updateByPrimaryKey(Orders record);
+
+    @Update("update orders set state=#{state} where orderid=#{orderid}")
+    int changeState(Orders orders);
 }

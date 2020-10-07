@@ -11,6 +11,15 @@ public class Orderitem implements java.io.Serializable{
     private Integer pid;
 
     private Integer oid;
+    private Product product;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     public Integer getId() {
         return id;

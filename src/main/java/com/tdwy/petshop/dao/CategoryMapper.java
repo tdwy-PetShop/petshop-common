@@ -3,7 +3,9 @@ package com.tdwy.petshop.dao;
 import com.tdwy.petshop.bean.Category;
 import com.tdwy.petshop.bean.CategoryExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
+
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 
 public interface CategoryMapper {
     long countByExample(CategoryExample example);
@@ -27,4 +29,6 @@ public interface CategoryMapper {
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);
+
+    List<Category> selectByPid(Integer Pid);
 }
